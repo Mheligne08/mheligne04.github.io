@@ -6,14 +6,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const price1Label = document.getElementById('price1');
     const price2Label = document.getElementById('price2');
     const price3Label = document.getElementById('price3');
-    const addToCartButtons = document.querySelectorAll('.addToCart');
     const qty1Input = document.getElementById('qty1');
     const qty2Input = document.getElementById('qty2');
     const qty3Input = document.getElementById('qty3');
 
-    qty1Input.addEventListener('input', updateTotal);
-    qty2Input.addEventListener('input', updateTotal);
-    qty3Input.addEventListener('input', updateTotal);
+    const addToCartButtons = document.querySelectorAll('.addToCart');
+
     cashInput.addEventListener('input', calculateChange);
 
     addToCartButtons.forEach(button => {
@@ -24,10 +22,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const qtyInput = document.getElementById(`qty${productId}`);
             const qty = parseFloat(qtyInput.value) || 0;
 
-            const cartItem = `Product: ${product} - Qty: ${qty}\n`;
+            const cartItem = `${product} - Qty: ${qty}`;
 
-            cartsTextarea.value += cartItem;
+            // Append to cartsTextarea
+            cartsTextarea.value += cartItem + '\n';
 
+            // Update total
             updateTotal();
         });
     });
