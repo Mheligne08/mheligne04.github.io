@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const totalOutput = document.getElementById('total');
     const changeOutput = document.getElementById('change');
     const cartsTextarea = document.getElementById('carts');
+    const ordersDiv = document.getElementById('orders');
     const price1Label = document.getElementById('price1');
     const price2Label = document.getElementById('price2');
     const price3Label = document.getElementById('price3');
@@ -22,13 +23,20 @@ document.addEventListener('DOMContentLoaded', function() {
             const qtyInput = document.getElementById(`qty${productId}`);
             const qty = parseFloat(qtyInput.value) || 0;
 
-            const cartItem = `${product} - Qty: ${qty}`;
+            if (qty > 0) {
+                const cartItem = `${product} - Qty: ${qty} - Price: ${price} - Subtotal: ${(price * qty).toFixed(2)}`;
 
-            // Append to cartsTextarea
-            cartsTextarea.value += cartItem + '\n';
+                // Append to cartsTextarea
+                cartsTextarea.value += cartItem + '\n';
 
-            // Update total
-            updateTotal();
+                // Add to orders
+                const orderItem = document.createElement('div');
+                orderItem.innerText = cartItem;
+                ordersDiv.appendChild(orderItem);
+
+                // Update total
+                updateTotal();
+            }
         });
     });
 
