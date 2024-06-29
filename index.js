@@ -11,6 +11,10 @@ function calculateTotal() {
     document.getElementById('total').value = total.toFixed(2); // Display total with two decimal places
 
     // Calculate change if cash tendered is provided
+    calculateChange(total);
+}
+
+function calculateChange(total) {
     const cash = parseFloat(document.getElementById('cash').value) || 0;
     const change = cash - total;
     document.getElementById('change').value = change.toFixed(2); // Display change with two decimal places
