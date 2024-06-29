@@ -22,6 +22,7 @@ var order qty2.value.toString() +' pc/s x ' price2.textContent + '______' + prod
 //carts.textContent + carts.value.toString() + "\n"; 
 carts.textContent order
 
-qtyl.addEventListener("keyup", addOrder): qty2.addEventListener("keyup", addOrder):
+qtyl.addEventListener("keyup", addOrder);
+qty2.addEventListener("keyup", addOrder);
 
-order
+  
