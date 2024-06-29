@@ -1,28 +1,17 @@
-var producti document.getElementById("product1")
-var qtyl document.getElementById("qtyl")
-var pricel document.getElementById("price1")
+function calculateTotal() {
+    let total = 0;
+    // Loop through each input field with class 'qty'
+    document.querySelectorAll('.qty').forEach(function(item) {
+        const qty = parseInt(item.value) || 0; // Get quantity from input (default to 0 if empty or non-numeric)
+        const price = parseFloat(item.getAttribute('data-price')); // Get price from data-price attribute
+        total += qty * price; // Calculate subtotal for each item
+    });
 
-var product2 document.getElementById("product2")
-var qty2 document.getElementById("qty2")
-var price2 document.getElementById("price2")
+    // Update total field
+    document.getElementById('total').value = total.toFixed(2); // Display total with two decimal places
 
-var carts document.getElementById("carts")
-var total document.getElementById("total") var cash document.getElementById("cash")
-var change document.getElementById("change")
-
-function addOrder() {
-carts.textContent=""
-if (parseFloat(qtyl.value) > 0){
-var order qty1.value.toString() +' pc/s x ' pricel.textContent + '______' + product1.textContent + '______' Php + (parseFloat(qtyl.value) *parseFloat(pricel.textContent)) + '/n'
-//carts.textContent + carts.value.toString() + "\n"; 
-carts.textContent order
-
-if (parseFloat(qty2.value) > 0) {
-var order qty2.value.toString() +' pc/s x ' price2.textContent + '______' + product2.textContent + '______' Php + (parseFloat(qty2.value) *parseFloat(price2.textContent)) + '/n'
-//carts.textContent + carts.value.toString() + "\n"; 
-carts.textContent order
-
-qtyl.addEventListener("keyup", addOrder);
-qty2.addEventListener("keyup", addOrder);
-
-  
+    // Calculate change if cash tendered is provided
+    const cash = parseFloat(document.getElementById('cash').value) || 0;
+    const change = cash - total;
+    document.getElementById('change').value = change.toFixed(2); // Display change with two decimal places
+}
