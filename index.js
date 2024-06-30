@@ -7,9 +7,9 @@ var price2 = document.getElementById("price2");
 var qty3 = document.getElementById("qty3");
 var price3 = document.getElementById("price3");
 var carts = document.getElementById("carts");
-var totalInput = document.getElementById("total");
-var cashInput = document.getElementById("cash");
-var changeInput = document.getElementById("change");
+var total = document.getElementById("total");
+var cash = document.getElementById("cash");
+var change = document.getElementById("change");
 
 function addOrder() {
     carts.textContent = "";
@@ -58,17 +58,6 @@ function updateTotal() {
     totalInput.value = total.toFixed(2); // Update total input field
     calculateChange(); // Calculate change after updating total
 }
-
-function calculateChange() {
-    var total = parseFloat(totalInput.value);
-    var cash = parseFloat(cashInput.value);
-
-    if (!isNaN(total) && !isNaN(cash)) {
-        var change = cash - total;
-        changeInput.value = change.toFixed(2); // Update change input field
-    } else {
-        changeInput.value = "";
-    }
 }
 
 qty1.addEventListener("keyup", addOrder);
