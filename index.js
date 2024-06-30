@@ -53,11 +53,9 @@ function updateTotal() {
     total += parseFloat(qty5.value) * parseFloat(price5.textContent);
     total += parseFloat(qty6.value) * parseFloat(price6.textContent);
     
-    
-    
     totalInput.value = total.toFixed(2); // Update total input field
     calculateChange(); // Calculate change after updating total
-}
+    }
 function calculateChange() {
     var total = parseFloat(totalInput.value);
     var cash = parseFloat(cashInput.value);
@@ -65,8 +63,10 @@ function calculateChange() {
     if (!isNaN(total) && !isNaN(cash)) {
         var change = cash - total;
         changeInput.value = change.toFixed(2); // Update change input field
-    } else {
-        changeInput.value = "";
+    }
+    else {
+    changeInput.value = ""; 
+}
 }
 
 qty1.addEventListener("keyup", addOrder);
