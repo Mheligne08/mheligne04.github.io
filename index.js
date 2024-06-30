@@ -1,67 +1,53 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const cashInput = document.getElementById('cash');
-    const totalOutput = document.getElementById('total');
-    const changeOutput = document.getElementById('change');
-    const cartsTextarea = document.getElementById('carts');
-    const ordersDiv = document.getElementById('orders');
-    const price1Label = document.getElementById('price1');
-    const price2Label = document.getElementById('price2');
-    const price3Label = document.getElementById('price3');
-    const qty1Input = document.getElementById('qty1');
-    const qty2Input = document.getElementById('qty2');
-    const qty3Input = document.getElementById('qty3');
+var product1 = document.getElementById("product1");
+var qty1 = document.getElementById("qty1");
+var price1 = document.getElementById("price1");
+var product2 = document.getElementById("product2");
+var qty2 = document.getElementById("qty2");
+var price2 = document.getElementById("price2");
+var carts = document.getElementById("carts");
+var totalInput = document.getElementById("total");
+var cashInput = document.getElementById("cash");
+var changeInput = document.getElementById("change");
 
-    const addToCartButtons = document.querySelectorAll('.addToCart');
+function addOrder() {
+    carts.textContent = "";
 
-    cashInput.addEventListener('input', calculateChange);
-
-    addToCartButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const product = this.getAttribute('data-product');
-            const price = parseFloat(this.getAttribute('data-price'));
-            const productId = this.getAttribute('data-product-id');
-            const qtyInput = document.getElementById(`qty${productId}`);
-            const qty = parseFloat(qtyInput.value) || 0;
-
-            if (qty > 0) {
-                const cartItem = `${product} - Qty: ${qty} - Price: ${price} - Subtotal: ${(price * qty).toFixed(2)}`;
-
-                // Append to cartsTextarea
-                cartsTextarea.value += cartItem + '\n';
-
-                // Add to orders
-                const orderItem = document.createElement('div');
-                orderItem.innerText = cartItem;
-                ordersDiv.appendChild(orderItem);
-
-                // Update total
-                updateTotal();
-            }
-        });
-    });
-
-    function updateTotal() {
-        const price1 = parseFloat(price1Label.innerText);
-        const price2 = parseFloat(price2Label.innerText);
-        const price3 = parseFloat(price3Label.innerText);
-
-        const qty1 = parseFloat(qty1Input.value) || 0;
-        const qty2 = parseFloat(qty2Input.value) || 0;
-        const qty3 = parseFloat(qty3Input.value) || 0;
-
-        const total = (price1 * qty1) + (price2 * qty2) + (price3 * qty3);
-
-        totalOutput.value = total.toFixed(2);
-
-        calculateChange();
+    if (parseFloat(qty1.value) > 0) {
+        var order1 = qty1.value.toString() + " pcs x " + product1.textContent + " - Php " + (parseFloat(qty1.value) * parseFloat(price1.textContent)).toFixed(2) + "\n";
+        carts.textContent += order1;
     }
 
-    function calculateChange() {
-        const total = parseFloat(totalOutput.value) || 0;
-        const cash = parseFloat(cashInput.value) || 0;
-        const change = cash - total;
-
-        changeOutput.value = change.toFixed(2);
+    if (parseFloat(qty2.value) > 0) {
+        var order2 = qty2.value.toString() + " pcs x " + product2.textContent + " - Php " + (parseFloat(qty2.value) * parseFloat(price2.textContent)).toFixed(2) + "\n";
+        carts.textContent += order2;
     }
-});
-            
+
+    updateTotal(); // Update total after adding orders
+}
+
+function updateTotal() {
+    var total = 0;
+
+    total += parseFloat(qty1.value) * parseFloat(price1.textContent);
+
+    total += parseFloat(qty2.value) * parseFloat(price2.textContent);
+
+    totalInput.value = total.toFixed(2); // Update total input field
+    calculateChange(); // Calculate change after updating total
+}
+
+function calculateChange() {
+    var total = parseFloat(totalInput.value);
+    var cash = parseFloat(cashInput.value);
+
+    if (!isNaN(total) && !isNaN(cash)) {
+        var change = cash - total;
+        changeInput.value = change.toFixed(2); // Update change input field
+    } else {
+        changeInput.value = "";
+    }
+}
+
+qty1.addEventListener("keyup", addOrder);
+qty2.addEventListener("keyup", addOrder);
+cashInput.addEventListener("input", calculateChange);
