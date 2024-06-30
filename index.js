@@ -7,9 +7,9 @@ var price2 = document.getElementById("price2");
 var qty3 = document.getElementById("qty3");
 var price3 = document.getElementById("price3");
 var carts = document.getElementById("carts");
-var total = document.getElementById("total");
-var cash = document.getElementById("cash");
-var change = document.getElementById("change");
+var totalInput = document.getElementById("total");
+var cashInput = document.getElementById("cash");
+var changeInput = document.getElementById("change");
 
 function addOrder() {
     carts.textContent = "";
