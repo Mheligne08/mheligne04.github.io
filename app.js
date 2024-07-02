@@ -13,7 +13,7 @@ function updateOrder() {
 
     products.forEach(function(product) {
         var quantity = document.getElementById('qty' + product.id).value;
-        if (quantity > 0) {
+        if (quantity && quantity > 0) {
             var productTotal = product.price * quantity;
             orderSummary += product.name + ': ' + quantity + ' x ' + product.price + ' = ' + productTotal.toFixed(2) + '\n';
             total += productTotal;
