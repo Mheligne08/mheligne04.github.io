@@ -1,62 +1,39 @@
-var product1 = document.getElementById("product1");
-var qty1 = document.getElementById("qty1");
-var price1 = document.getElementById("price1");
-var product2 = document.getElementById("product2");
-var qty2 = document.getElementById("qty2");
-var price2 = document.getElementById("price2");
-var qty3 = document.getElementById("qty3");
-var price3 = document.getElementById("price3");
-var carts = document.getElementById("carts");
-var totalInput = document.getElementById("total");
-var cashInput = document.getElementById("cash");
-var changeInput = document.getElementById("change");
+function updateOrder() {
+    var products = [
+        { id: 1, name: 'Whopper Ala Carte', price: 300.00 },
+        { id: 2, name: 'Whopper Jr Burger', price: 200.00 },
+        { id: 3, name: 'Fish\'n Crisp Burger', price: 250.00 },
+        { id: 4, name: 'Big King Fish Burger', price: 270.00 },
+        { id: 5, name: 'Chicken Burger Monster', price: 290.00 },
+        { id: 6, name: 'Grilled Chicken Burger', price: 270.00 },
+    ];
 
-function addOrder() {
-    carts.textContent = "";
-
-    if (parseFloat(qty1.value) > 0) {
-        var order1 = qty1.value.toString() + " pcs x " + product1.textContent + " - Php " + (parseFloat(qty1.value) * parseFloat(price1.textContent)).toFixed(2) + "\n";
-        carts.textContent += order1;
-    }
-
-    if (parseFloat(qty2.value) > 0) {
-        var order2 = qty2.value.toString() + " pcs x " + product2.textContent + " - Php " + (parseFloat(qty2.value) * parseFloat(price2.textContent)).toFixed(2) + "\n";
-        carts.textContent += order2;
-    }
-    
-    if (parseFloat(qty3.value) > 0) {
-        var order3 = qty3.value.toString() + " pcs x " + product3.textContent + " - Php " + (parseFloat(qty3.value) * parseFloat(price3.textContent)).toFixed(2) + "\n";
-        carts.textContent += order3;
-    }
-    
-    updateTotal(); // Update total after adding orders
-}
-
-function updateTotal() {
+    var orderSummary = '';
     var total = 0;
 
-    total += parseFloat(qty1.value) * parseFloat(price1.textContent);
-    total += parseFloat(qty2.value) * parseFloat(price2.textContent);
-    total += parseFloat(qty3.value) * parseFloat(price3.textContent);
-    
-    totalInput.value = total.toFixed(2); // Update total input field
-    calculateChange(); // Calculate change after updating total
+    products.forEach(function(product) {
+        var quantity = document.getElementById('qty' + product.id).value;
+        if (quantity > 0) {
+            var productTotal = product.price * quantity;
+            orderSummary += product.name + ': ' + quantity + ' x ' + product.price + ' = ' + productTotal.toFixed(2) + '\n';
+            total += productTotal;
+        }
+    });
+
+    document.getElementById('carts').value = orderSummary;
+    document.getElementById('total').value = total.toFixed(2);
+
+    calculateChange();
 }
 
 function calculateChange() {
-    var total = parseFloat(totalInput.value);
-    var cash = parseFloat(cashInput.value);
+    var total = parseFloat(document.getElementById('total').value);
+    var cash = parseFloat(document.getElementById('cash').value);
 
-    if (!isNaN(total) && !isNaN(cash)) {
+    if (!isNaN(total) && !isNaN(cash) && cash >= total) {
         var change = cash - total;
-        changeInput.value = change.toFixed(2); // Update change input field
+        document.getElementById('change').value = change.toFixed(2);
     } else {
-        changeInput.value = "";
+        document.getElementById('change').value = '';
     }
 }
-
-qty1.addEventListener("keyup", addOrder);
-qty2.addEventListener("keyup", addOrder);
-qty3.addEventListener("keyup", addOrder);
-cashInput.addEventListener("input", calculateChange);
-        
