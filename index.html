@@ -20,6 +20,29 @@
         .card {
             background: rgba(255, 255, 255, 0.8); /* Semi-transparent background for cards */
         }
+
+        .card img {
+            max-height: 200px; /* Adjust this value as needed */
+            object-fit: cover;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .card-title,
+        .card-text {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -31,9 +54,9 @@
             </div>
         </div>
         <div class="row mb-3">
-            <div class="col-md-4 text-center">
-                <div class="card">
-                    <img src="Whopper Ala Carte.png" class="card-img-top img-thumbnail" style="width:100%; height:auto;">
+            <div class="col-md-4 text-center d-flex">
+                <div class="card w-100">
+                    <img src="Whopper Ala Carte.png" class="card-img-top img-thumbnail">
                     <div class="card-body">
                         <h5 class="card-title">Whopper Ala Carte</h5>
                         <p class="card-text">Price: ₱300.00</p>
@@ -41,9 +64,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 text-center">
-                <div class="card">
-                    <img src="whopper jr Burger.jfif" class="card-img-top img-thumbnail" style="width:100%; height:auto;">
+            <div class="col-md-4 text-center d-flex">
+                <div class="card w-100">
+                    <img src="whopper jr Burger.jfif" class="card-img-top img-thumbnail">
                     <div class="card-body">
                         <h5 class="card-title">Whopper Jr Burger</h5>
                         <p class="card-text">Price: ₱200.00</p>
@@ -51,9 +74,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 text-center">
-                <div class="card">
-                    <img src="fish'n crisp burger.jfif" class="card-img-top img-thumbnail" style="width:100%; height:auto;">
+            <div class="col-md-4 text-center d-flex">
+                <div class="card w-100">
+                    <img src="fish'n crisp burger.jfif" class="card-img-top img-thumbnail">
                     <div class="card-body">
                         <h5 class="card-title">Fish'n Crisp Burger</h5>
                         <p class="card-text">Price: ₱250.00</p>
@@ -63,9 +86,9 @@
             </div>
         </div>
         <div class="row mb-3">
-            <div class="col-md-4 text-center">
-                <div class="card">
-                    <img src="bigking fish burger.jfif" class="card-img-top img-thumbnail" style="width:100%; height:auto;">
+            <div class="col-md-4 text-center d-flex">
+                <div class="card w-100">
+                    <img src="bigking fish burger.jfif" class="card-img-top img-thumbnail">
                     <div class="card-body">
                         <h5 class="card-title">Big King Fish Burger</h5>
                         <p class="card-text">Price: ₱270.00</p>
@@ -73,9 +96,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 text-center">
-                <div class="card">
-                    <img src="chiken burger monster.jfif" class="card-img-top img-thumbnail" style="width:100%; height:auto;">
+            <div class="col-md-4 text-center d-flex">
+                <div class="card w-100">
+                    <img src="chiken burger monster.jfif" class="card-img-top img-thumbnail">
                     <div class="card-body">
                         <h5 class="card-title">Chicken Burger Monster</h5>
                         <p class="card-text">Price: ₱290.00</p>
@@ -83,9 +106,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 text-center">
-                <div class="card">
-                    <img src="grilled chiken burger.jfif" class="card-img-top img-thumbnail" style="width:100%; height:auto;">
+            <div class="col-md-4 text-center d-flex">
+                <div class="card w-100">
+                    <img src="grilled chiken burger.jfif" class="card-img-top img-thumbnail">
                     <div class="card-body">
                         <h5 class="card-title">Grilled Chicken Burger</h5>
                         <p class="card-text">Price: ₱270.00</p>
@@ -112,4 +135,4 @@
     <script src="app.js"></script>
 </body>
     </html>
-    
+                            
