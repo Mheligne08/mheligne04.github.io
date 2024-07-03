@@ -1,39 +1,37 @@
 function updateOrder() {
-    var products = [
-        { id: 1, name: 'Whopper Ala Carte', price: 300.00 },
-        { id: 2, name: 'Whopper Jr Burger', price: 200.00 },
-        { id: 3, name: 'Fish\'n Crisp Burger', price: 250.00 },
-        { id: 4, name: 'Big King Fish Burger', price: 270.00 },
-        { id: 5, name: 'Chicken Burger Monster', price: 290.00 },
-        { id: 6, name: 'Grilled Chicken Burger', price: 270.00 },
+    var prices = [300, 200, 250, 270, 290, 270];
+    var quantities = [
+        document.getElementById('qty1').value,
+        document.getElementById('qty2').value,
+        document.getElementById('qty3').value,
+        document.getElementById('qty4').value,
+        document.getElementById('qty5').value,
+        document.getElementById('qty6').value
     ];
 
-    var orderSummary = '';
+    var orderList = '';
     var total = 0;
 
-    products.forEach(function(product) {
-        var quantity = document.getElementById('qty' + product.id).value;
-        if (quantity && quantity > 0) {
-            var productTotal = product.price * quantity;
-            orderSummary += product.name + ': ' + quantity + ' x ' + product.price + ' = ' + productTotal.toFixed(2) + '\n';
-            total += productTotal;
+    for (var i = 0; i < quantities.length; i++) {
+        if (quantities[i] > 0) {
+            orderList += 'Item ' + (i + 1) + ': ₱' + prices[i] + ' x ' + quantities[i] + ' = ₱' + (prices[i] * quantities[i]) + '\n';
+            total += prices[i] * quantities[i];
         }
-    });
+    }
 
-    document.getElementById('carts').value = orderSummary;
-    document.getElementById('total').value = total.toFixed(2);
-
+    document.getElementById('carts').value = orderList;
+    document.getElementById('total').value = 'Total: ₱' + total;
     calculateChange();
 }
 
 function calculateChange() {
-    var total = parseFloat(document.getElementById('total').value);
-    var cash = parseFloat(document.getElementById('cash').value);
+    var total = parseFloat(document.getElementById('total').value.replace('Total: ₱', '')) || 0;
+    var cash = parseFloat(document.getElementById('cash').value) || 0;
+    var change = cash - total;
 
-    if (!isNaN(total) && !isNaN(cash) && cash >= total) {
-        var change = cash - total;
-        document.getElementById('change').value = change.toFixed(2);
-    } else {
-        document.getElementById('change').value = '';
-    }
+    document.getElementById('change').value = 'Change: ₱' + (change >= 0 ? change : 0);
 }
+
+document.getElementById('checkout').addEventListener('click', function() {
+    alert('Thanks for your orders!');
+});
