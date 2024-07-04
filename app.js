@@ -35,3 +35,17 @@ function calculateChange() {
 document.getElementById('checkout').addEventListener('click', function() {
     alert('Thanks for your orders!');
 });
+function createBubble(event) {
+            const card = event.currentTarget;
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+            bubble.style.width = '20px';
+            bubble.style.height = '20px';
+            bubble.style.left = `${event.clientX - card.offsetLeft}px`;
+            bubble.style.top = `${event.clientY - card.offsetTop}px`;
+            card.appendChild(bubble);
+            
+            setTimeout(() => {
+                bubble.remove();
+            }, 1000);
+}
