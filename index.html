@@ -22,6 +22,7 @@
             border: 2px solid transparent;
             border-radius: 15px;
             transition: 0.3s;
+            position: relative; /* Needed for bubble effect */
         }
 
         .card img {
@@ -60,6 +61,26 @@
             border: 2px solid #00ff99;
             box-shadow: 0 0 20px #00ff99, 0 0 40px #00ff99, 0 0 60px #00ff99;
         }
+
+        /* Bubble effect */
+        .bubble {
+            position: absolute;
+            background: rgba(0, 255, 153, 0.7);
+            border-radius: 50%;
+            opacity: 0;
+            animation: bubble 1s forwards;
+        }
+
+        @keyframes bubble {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -74,7 +95,7 @@
             <div class="col-md-8">
                 <div class="row mb-3">
                     <div class="col-md-4 text-center d-flex">
-                        <div class="card w-100">
+                        <div class="card w-100" onmousedown="createBubble(event)">
                             <img src="Whopper Ala Carte.png" class="card-img-top img-thumbnail">
                             <div class="card-body">
                                 <h5 class="card-title">Whopper Ala Carte</h5>
@@ -84,7 +105,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 text-center d-flex">
-                        <div class="card w-100">
+                        <div class="card w-100" onmousedown="createBubble(event)">
                             <img src="whopper jr Burger.jfif" class="card-img-top img-thumbnail">
                             <div class="card-body">
                                 <h5 class="card-title">Whopper Jr Burger</h5>
@@ -94,7 +115,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 text-center d-flex">
-                        <div class="card w-100">
+                        <div class="card w-100" onmousedown="createBubble(event)">
                             <img src="fish'n crisp burger.jfif" class="card-img-top img-thumbnail">
                             <div class="card-body">
                                 <h5 class="card-title">Fish'n Crisp Burger</h5>
@@ -106,7 +127,7 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-4 text-center d-flex">
-                        <div class="card w-100">
+                        <div class="card w-100" onmousedown="createBubble(event)">
                             <img src="bigking fish burger.jfif" class="card-img-top img-thumbnail">
                             <div class="card-body">
                                 <h5 class="card-title">Big King Fish Burger</h5>
@@ -116,7 +137,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 text-center d-flex">
-                        <div class="card w-100">
+                        <div class="card w-100" onmousedown="createBubble(event)">
                             <img src="chiken burger monster.jfif" class="card-img-top img-thumbnail">
                             <div class="card-body">
                                 <h5 class="card-title">Chicken Burger Monster</h5>
@@ -126,7 +147,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 text-center d-flex">
-                        <div class="card w-100">
+                        <div class="card w-100" onmousedown="createBubble(event)">
                             <img src="grilled chiken burger.jfif" class="card-img-top img-thumbnail">
                             <div class="card-body">
                                 <h5 class="card-title">Grilled Chicken Burger</h5>
@@ -156,6 +177,21 @@
         <p>© 2024 MHEL JANCENT M. IGNE. BSIT 3B  <br> All rights reserved.</p>
     </footer>
 
-    <script src="app.js"></script>
+    <script>
+        function createBubble(event) {
+            const card = event.currentTarget;
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+            bubble.style.width = '20px';
+            bubble.style.height = '20px';
+            bubble.style.left = `${event.clientX - card.offsetLeft}px`;
+            bubble.style.top = `${event.clientY - card.offsetTop}px`;
+            card.appendChild(bubble);
+            
+            setTimeout(() => {
+                bubble.remove();
+            }, 1000);
+        }
+    </script>
 </body>
 </html>
