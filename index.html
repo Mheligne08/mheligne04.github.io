@@ -19,6 +19,9 @@
 
         .card {
             background: rgba(255, 255, 255, 0.8); /* Semi-transparent background for cards */
+            border: 2px solid transparent;
+            border-radius: 15px;
+            transition: 0.3s;
         }
 
         .card img {
@@ -47,10 +50,25 @@
         footer {
             background: rgba(255, 255, 255, 0.8);
             padding: 10px 0;
-            position: relatives;
+            position: relative;
             bottom: 0;
             width: 100%;
             text-align: center;
+        }
+
+        .card:hover {
+            border: 2px solid #00ff99;
+            box-shadow: 0 0 20px #00ff99, 0 0 40px #00ff99, 0 0 60px #00ff99;
+        }
+
+        .card-title {
+            color: #333;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .card:hover .card-title {
+            color: #00ff99;
+            text-shadow: 0 0 10px #00ff99, 0 0 20px #00ff99, 0 0 30px #00ff99;
         }
     </style>
 </head>
